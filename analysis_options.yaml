@@ -13,6 +13,10 @@ analyzer:
     unnecessary_lambdas: error
     always_put_control_body_on_new_line: error
 
+  exclude: [
+      lib/common/injector/injector.config.dart,
+    ]
+
 linter:
   rules:
     avoid_final_parameters: false
