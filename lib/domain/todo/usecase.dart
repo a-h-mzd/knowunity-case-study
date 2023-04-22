@@ -1,20 +1,17 @@
 import 'package:injectable/injectable.dart';
+import 'package:knowunity/domain/todo/repository.dart';
 import 'package:knowunity/presentation/models/todo.dart';
 
 @injectable
 class TodoUsecase {
-  const TodoUsecase();
+  final TodoRepository todoRepository;
+
+  const TodoUsecase({
+    required this.todoRepository,
+  });
 
   Future<List<Todo>> fetchTodos() async {
-    await Future.delayed(const Duration(seconds: 2));
-    return List.generate(
-      20,
-      (index) {
-        return Todo(
-          title: 'title $index',
-          completed: index.remainder(2).isOdd,
-        );
-      },
-    );
+    final todos = await todoRepository.fetchTodos();
+    return todos.map(Todo.fromApiModel).toList();
   }
 }

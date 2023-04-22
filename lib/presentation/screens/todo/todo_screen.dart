@@ -32,6 +32,14 @@ class TodoScreen extends StatelessWidget with AutoRouteWrapper {
     final focusScope = provider.focusScope;
     final isFocused = focusScope.hasFocus;
 
+    void onWhiteSpaceAreaTap() {
+      if (isFocused) {
+        focusScope.unfocus();
+      } else {
+        provider.newTodo();
+      }
+    }
+
     final scrollController = provider.scrollController;
 
     return Scaffold(
@@ -64,8 +72,7 @@ class TodoScreen extends StatelessWidget with AutoRouteWrapper {
                     SliverToBoxAdapter(
                       child: GestureDetector(
                         behavior: HitTestBehavior.opaque,
-                        onTap:
-                            isFocused ? focusScope.unfocus : provider.newTodo,
+                        onTap: onWhiteSpaceAreaTap,
                         child: const SafeArea(
                           top: false,
                           child: SizedBox(height: 56 + 1),
@@ -75,7 +82,7 @@ class TodoScreen extends StatelessWidget with AutoRouteWrapper {
                   GestureSliverFillRemaining(
                     isLoading: provider.isFetchingTodos,
                     hasTodos: provider.todos.isNotEmpty,
-                    onTap: isFocused ? focusScope.unfocus : provider.newTodo,
+                    onTap: onWhiteSpaceAreaTap,
                   ),
                 ],
               ),
