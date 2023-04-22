@@ -1,28 +1,27 @@
-import 'package:flutter/widgets.dart';
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:knowunity/presentation/components/todo_list.dart';
 import 'package:knowunity/presentation/models/todo.dart';
+import 'package:knowunity/presentation/screens/todo/todo_api_mixin.dart';
 
 @injectable
-class TodoProvider extends ChangeNotifier implements TodoListMethodProvider {
+class TodoProvider extends ChangeNotifier
+    with TodoApiMixin
+    implements TodoListMethodProvider {
+  @override
   final todos = <Todo>[];
   final focusScope = FocusScopeNode();
   final ScrollController scrollController;
 
   TodoProvider({
     @factoryParam required this.scrollController,
-  }) {
-    todos.addAll(
-      List.generate(
-        20,
-        (index) {
-          return Todo(
-            title: 'title $index',
-            completed: index.remainder(2).isOdd,
-          );
-        },
-      ),
-    );
+  });
+
+  @postConstruct
+  void initialize() {
+    fetchTodos();
   }
 
   Future<void> newTodo() async {

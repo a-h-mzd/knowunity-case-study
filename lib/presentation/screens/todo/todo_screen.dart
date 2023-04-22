@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:knowunity/common/injector/injector.dart';
 import 'package:knowunity/l10n/localization.dart';
+import 'package:knowunity/presentation/components/fetch_todos_button.dart';
 import 'package:knowunity/presentation/components/gesture_sliver_fill_remaining.dart';
 import 'package:knowunity/presentation/components/navigation_bar.dart';
 import 'package:knowunity/presentation/components/new_todo_button.dart';
@@ -49,6 +50,11 @@ class TodoScreen extends StatelessWidget with AutoRouteWrapper {
                 slivers: [
                   TodoSliverNavigationBar(
                     title: context.localizations.todos,
+                    trailing: FetchTodosButton(
+                      onTap: provider.fetchTodos,
+                      isLoading: provider.isFetchingTodos,
+                      hasError: provider.errorFetchingTodos,
+                    ),
                   ),
                   TodoList(
                     todos: provider.todos,
@@ -67,7 +73,7 @@ class TodoScreen extends StatelessWidget with AutoRouteWrapper {
                       ),
                     ),
                   GestureSliverFillRemaining(
-                    isLoading: false,
+                    isLoading: provider.isFetchingTodos,
                     hasTodos: provider.todos.isNotEmpty,
                     onTap: isFocused ? focusScope.unfocus : provider.newTodo,
                   ),
