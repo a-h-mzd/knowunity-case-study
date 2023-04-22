@@ -1,0 +1,20 @@
+name: knowunity
+publish_to: 'none'
+description: Knowunity case study.
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+  flutter: '>=3.7.7'
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  lint: ^2.0.1
+
+flutter:
+  uses-material-design: true

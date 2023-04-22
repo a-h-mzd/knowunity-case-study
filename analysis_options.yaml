@@ -1,0 +1,29 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  errors:
+    todo: info
+    implementation_imports: error
+    invalid_use_of_protected_member: error
+    invalid_use_of_visible_for_testing_member: error
+    prefer_single_quotes: error
+    avoid_returning_this: error
+    avoid_slow_async_io: error
+    close_sinks: error
+    unnecessary_lambdas: error
+    always_put_control_body_on_new_line: error
+
+linter:
+  rules:
+    avoid_final_parameters: false
+    avoid_positional_boolean_parameters: false
+    avoid_classes_with_only_static_members: false
+    prefer_single_quotes: true
+    avoid_returning_this: true
+    avoid_slow_async_io: true
+    close_sinks: true
+    flutter_style_todos: true
+    unnecessary_lambdas: true
+    use_decorated_box: true
+    always_put_control_body_on_new_line: true
+    unawaited_futures: true
