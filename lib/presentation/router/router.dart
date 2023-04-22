@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
+import 'package:knowunity/presentation/screens/todo/todo_screen.dart';
 
 part 'router.gr.dart';
 
@@ -13,6 +14,6 @@ class AppRouter extends _$AppRouter {
 
   @override
   final routes = <AutoRoute>[
-    //
+    AutoRoute(page: TodoRoute.page, path: '/'),
   ];
 }
