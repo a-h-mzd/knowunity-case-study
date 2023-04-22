@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:knowunity/domain/todo/usecase.dart';
 import 'package:knowunity/presentation/components/todo_list.dart';
 import 'package:knowunity/presentation/models/todo.dart';
 import 'package:knowunity/presentation/screens/todo/todo_api_mixin.dart';
@@ -15,13 +16,23 @@ class TodoProvider extends ChangeNotifier
   final focusScope = FocusScopeNode();
   final ScrollController scrollController;
 
+  @override
+  final TodoUsecase todoUsecase;
+
   TodoProvider({
     @factoryParam required this.scrollController,
+    required this.todoUsecase,
   });
 
   @postConstruct
   void initialize() {
     fetchTodos();
+  }
+
+  @override
+  void onTodosFetched() {
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => scrollController.notifyListeners());
   }
 
   Future<void> newTodo() async {

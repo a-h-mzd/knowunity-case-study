@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:knowunity/domain/todo/usecase.dart';
 import 'package:knowunity/presentation/models/todo.dart';
 
 mixin TodoApiMixin on ChangeNotifier {
@@ -8,6 +9,7 @@ mixin TodoApiMixin on ChangeNotifier {
   bool get errorFetchingTodos => _errorFetching;
   bool _errorFetching = false;
 
+  TodoUsecase get todoUsecase;
   List<Todo> get todos;
 
   Future<void> fetchTodos() async {
@@ -20,23 +22,18 @@ mixin TodoApiMixin on ChangeNotifier {
     notifyListeners();
 
     try {
-      // TODO(a-h-mzd): Fetch todos here.
-      todos.addAll(
-        List.generate(
-          20,
-          (index) {
-            return Todo(
-              title: 'title $index',
-              completed: index.remainder(2).isOdd,
-            );
-          },
-        ),
-      );
+      final fetchedTodos = await todoUsecase.fetchTodos();
+      todos.addAll(fetchedTodos);
     } catch (e) {
       _errorFetching = true;
     }
 
     _isFetching = false;
     notifyListeners();
+
+    onTodosFetched();
   }
+
+  @protected
+  void onTodosFetched() {}
 }
