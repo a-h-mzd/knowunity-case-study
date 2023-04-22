@@ -9,18 +9,25 @@ environment:
   flutter: '>=3.7.7'
 
 dependencies:
+  auto_route: ^6.1.0
   cupertino_icons: ^1.0.2
   dio: ^5.0.2
   dio_smart_retry: ^5.0.0
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   get_it: ^7.2.0
   injectable: ^2.1.0
+  intl: ^0.17.0
+  provider: ^6.0.1
 
 dev_dependencies:
+  auto_route_generator: ^6.0.0
   build_runner: ^2.1.4
   injectable_generator: ^2.1.2
   lint: ^2.0.1
 
 flutter:
+  generate: true
   uses-material-design: true

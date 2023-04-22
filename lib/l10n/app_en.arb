@@ -1,0 +1,27 @@
+{
+  "@@locale": "en",
+  "todos": "Todos",
+  "@todos": {
+    "type": "text"
+  },
+  "newTodo": "New Todo",
+  "@newTodo": {
+    "type": "text"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "type": "text"
+  },
+  "fetchTodos": "Fetch Todos",
+  "@fetchTodos": {
+    "type": "text"
+  },
+  "loadingTodos": "Loading Todos...",
+  "@loadingTodos": {
+    "type": "text"
+  },
+  "noTodos": "No Todos yet!",
+  "@noTodos": {
+    "type": "text"
+  }
+}
